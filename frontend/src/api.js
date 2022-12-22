@@ -42,7 +42,7 @@ export const Services = {
                     .then(response => ({ ...song, genre: response.data.artist && response.data.artist.genre && response.data.artist.genre[0].name }), () => ({ ...song }))
             })
         const songs = await Promise.all(finalResult)
-        console.log(songs)
+        console.log('songs')
 
         // res.json(songs)
     },
@@ -59,6 +59,7 @@ export const Services = {
     artists: async (artistSlug, complete) => {
         try {
             const response = await axios.get(getArtistApi(artistSlug))
+
             const artist = response.data.artist
 
             if (!artist) return null

@@ -1,11 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Container } from '@mui/material';
 import ListData from './components/ListData';
-// import { Services }  from './api.js';
+import { Services }  from './api.js';
 
 function App() {
+  const [musicas, setMusicas] = useState([])
+
   useEffect(() => {
-    
+    Services.artists('legiao-urbana', false)
+    .then(response => {
+      console.log(response.data)
+      //setMusicas(response.data)
+    })
   }, [])
 
   return (
@@ -16,7 +22,7 @@ function App() {
           marginTop: 20
         }}
       >
-        <ListData />
+        <ListData musicas={ musicas } />
         </Box>
     </Container>
   );
