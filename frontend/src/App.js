@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState} from 'react';
 import { Box, Container } from '@mui/material';
-import ListData from './components/ListData';
-import { Services }  from './api.js';
+import ArtistasList from './components/ArtistasList';
+import MusicasArtista from './components/MusicasArtista';
 
 function App() {
-  const [musicas, setMusicas] = useState([])
+  const [selectedArtist, setSelectedArtist] = useState(null);
 
-  useEffect(() => {
-    Services.artists('legiao-urbana', false)
-    .then(response => {
-      console.log(response.data)
-      //setMusicas(response.data)
-    })
-  }, [])
+  const handleSelectArtist = (artist) => {
+    setSelectedArtist(artist)
+  }
+
+  const handleSelectMusic = (music) => {
+    console.log(music)
+  }
 
   return (
     <Container maxWidth="sm">
@@ -22,7 +22,7 @@ function App() {
           marginTop: 20
         }}
       >
-        <ListData musicas={ musicas } />
+        {selectedArtist ? <MusicasArtista artista={selectedArtist} onSelect={handleSelectMusic}/> : <ArtistasList onSelect={handleSelectArtist} /> }
         </Box>
     </Container>
   );

@@ -43,6 +43,7 @@ export const Services = {
             })
         const songs = await Promise.all(finalResult)
         console.log('songs')
+        return songs
 
         // res.json(songs)
     },
