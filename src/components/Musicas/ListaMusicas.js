@@ -5,26 +5,22 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
-import { getSongs } from "../service/music";
+import { getSongs } from "../../service/music";
 import {
-  Typography,
   LinearProgress,
-  Card,
-  CardContent,
-  Breadcrumbs,
-  Link,
 } from "@mui/material";
 
-const MusicasArtista = ({ artista, onSelect, returnCommand }) => {
+const ListaMusicas = ({ artista, onSelect, returnCommand }) => {
   const [musicas, setMusicas] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    getSongs(artista.slug).then((musics) => {
+    getSongs(artista).then((musics) => {
       setMusicas(musics);
       setLoading(false);
     });
+    // eslint-disable-next-line
   }, []);
 
   let musicList = null;
@@ -44,36 +40,11 @@ const MusicasArtista = ({ artista, onSelect, returnCommand }) => {
 
   return (
     <>
-      <Typography
-        sx={{
-          width: "100%",
-          marginTop: 20,
-          marginLeft: 3,
-        }}
-        variant="h3"
-        gutterBottom
-      >
-        Músicas
-      </Typography>
-      <Breadcrumbs
-        sx={{
-          margin: 3
-        }} 
-        aria-label="breadcrumb">
-        <Link underline="hover" color="inherit" onClick={returnCommand}>
-          Artistas
-        </Link>
-        <Typography color="text.primary">{artista.name}</Typography>
-      </Breadcrumbs>
-      <Card elevation={5}>
-        <CardContent>
-          <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-            {loading ? <LinearProgress /> : musicList}
-          </List>
-        </CardContent>
-      </Card>
+      <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+        {loading ? <LinearProgress /> : musicList}
+      </List>
     </>
   );
 };
 
-export default MusicasArtista;
+export default ListaMusicas;
