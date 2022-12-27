@@ -1,29 +1,37 @@
-import React, {useState} from 'react';
-import { Box, Container } from '@mui/material';
-import ArtistasList from './components/ArtistasList';
-import MusicasArtista from './components/MusicasArtista';
+import React, { useState } from "react";
+import { Box, Container } from "@mui/material";
+import ArtistasList from "./components/ArtistasList";
+import MusicasArtista from "./components/MusicasArtista";
 
 function App() {
   const [selectedArtist, setSelectedArtist] = useState(null);
 
-  const handleSelectArtist = (artist) => {
-    setSelectedArtist(artist)
-  }
+  const handleSelectArtist = (artist, slug) => {
+    setSelectedArtist({...artist, slug: slug});
+  };
 
   const handleSelectMusic = (music) => {
-    console.log(music)
-  }
+    console.log(music);
+  };
 
   return (
     <Container maxWidth="sm">
       <Box
         sx={{
           width: "100%",
-          marginTop: 20
+          marginTop: 20,
         }}
       >
-        {selectedArtist ? <MusicasArtista artista={selectedArtist} onSelect={handleSelectMusic}/> : <ArtistasList onSelect={handleSelectArtist} /> }
-        </Box>
+          {selectedArtist ? (
+            <MusicasArtista
+              returnCommand={() => setSelectedArtist(null)}
+              artista={selectedArtist}
+              onSelect={handleSelectMusic}
+            />
+          ) : (
+            <ArtistasList onSelect={handleSelectArtist} />
+          )}
+      </Box>
     </Container>
   );
 }

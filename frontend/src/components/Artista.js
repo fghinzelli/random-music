@@ -5,6 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
 import { Services } from "../api.js";
+import { VAGALUME_URL } from "../config.js";
 
 const Artista = ({ slugArtista, onSelect }) => {
   const [artista, setArtista] = useState(null);
@@ -20,9 +21,9 @@ const Artista = ({ slugArtista, onSelect }) => {
   if (artista) {
     itemArtista = (
       <ListItem key={artista.slug}>
-        <ListItemButton onClick={onSelect}>
+        <ListItemButton onClick={() => onSelect(artista, slugArtista)}>
           <ListItemAvatar>
-            <Avatar alt={artista.name} src={`https://www.vagalume.com.br/${artista.imgUrl}`} />
+            <Avatar alt={artista.name} src={`${VAGALUME_URL}/${artista.imgUrl}`} />
           </ListItemAvatar>
           <ListItemText primary={artista.name} />
         </ListItemButton>
