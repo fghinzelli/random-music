@@ -22,18 +22,6 @@ const Home = () => {
                 </ListItem>
             </List>
         </Paper>
-
-
-        //     {/* {selectedArtist ? (
-        //         <MusicasArtista
-        //         returnCommand={() => setSelectedArtist(null)}
-        //         artista={selectedArtist}
-        //         onSelect={handleSelectMusic}
-        //         />
-        //     ) : (
-        //         <ArtistasList onSelect={handleSelectArtist} />
-        //     )} */}
-
     )
 }
 
