@@ -2,7 +2,6 @@ import axios from "axios";
 import cheerio from "cheerio";
 import {
   SEARCH_SONGS_API,
-  LISTA_ARTISTAS,
   CIFRACLUB_SONG_ID,
   VAGALUME_URL,
   CIFRACLUB_URL,
@@ -50,3 +49,37 @@ export const getSongs = async (name) => {
 
   return songs;
 };
+
+export const getChords = async (artist, song) => {
+  try {
+      const response = await axios.get(getChordsApi(artist, song))
+      const $ = cheerio.load(response.data)
+      $('.tablatura').remove()
+      return $('pre').html()
+  } catch (e) {
+      return null;
+  }
+}
+
+export const getArtist = async (artistSlug, complete) => {
+  try {
+      const response = await axios.get(getArtistApi(artistSlug))
+
+      const artist = response.data.artist
+
+      if (!artist) return null
+
+      let artistResponse = {
+          name: artist.desc,
+          imgUrl: artist.pic_small,
+          genre: artist.genre ? artist.genre[0].name : undefined,
+      }
+
+      if (complete) {
+          artistResponse = { ...artistResponse, topLyrics: artist.toplyrics.item }
+      }
+      return artistResponse
+  } catch (e) {
+      return null
+  }
+}
