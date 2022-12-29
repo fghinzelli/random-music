@@ -1,14 +1,15 @@
+import React, { useContext } from 'react';
 import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemText } from "@mui/material";
 import { useHistory } from 'react-router-dom';
+import MusicContext from '../../store/music';
 
 const ItemMusica = ({ artista, musica }) => {
-
+  const musicCtx = useContext(MusicContext);
   const history = useHistory();
 
   const handleRedirect = (musica) => {
+    musicCtx.setMusic(musica)
     history.push(`/artistas/${artista}/${musica.id}`)
-
-
   }
 
   return (

@@ -14,10 +14,10 @@ const Paper = props => {
                 aria-label="breadcrumb">
                 {props.breadcrumb.map((item, index) => {
                     if (index === (props.breadcrumb.length -1 )) {
-                        return <Typography color="text.primary">{item.text}</Typography>
+                        return <Typography key={index} color="text.primary">{item.text}</Typography>
                     } else {
                         return (
-                            <RouterLink style={{textDecoration: 'none'}} to={item.link} color="inherit">
+                            <RouterLink key={index} style={{textDecoration: 'none'}} to={item.link} color="inherit">
                                 {item.text}
                             </RouterLink>
                         )

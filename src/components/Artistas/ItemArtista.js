@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { ListItem, ListItemAvatar, ListItemButton, ListItemText, Skeleton, Box } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import { getArtist } from "../../service/music";
 import { VAGALUME_URL } from "../../config";
 import { useHistory } from 'react-router-dom';
+import MusicContext from '../../store/music'
 
 const Artista = ({ slugArtista, onSelect }) => {
   const [artista, setArtista] = useState(null);
   const [loading, setLoading] = useState(true);
   const history = useHistory();
-
+  const musicCtx = useContext(MusicContext)
 
   useEffect(() => {
     setLoading(true);
@@ -25,6 +26,7 @@ const Artista = ({ slugArtista, onSelect }) => {
   }, []);
 
   const handleRedirect = () => {
+    musicCtx.setArtist(artista)
     history.push(`/artistas/${artista.slug}`)
   }
 

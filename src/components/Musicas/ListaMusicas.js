@@ -24,7 +24,7 @@ const ListaMusicas = ({ artista }) => {
 
   if (musicas) {
     musicList = musicas.map((musica) => (
-      <ItemMusica artista={artista} musica={musica}/>
+      <ItemMusica key={musica.id} artista={artista} musica={musica}/>
     ));
   }
 

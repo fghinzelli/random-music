@@ -52,35 +52,38 @@ export const getSongs = async (name) => {
 
 export const getChords = async (artist, song) => {
   try {
-      console.log(getChordsApi(artist, song))
-      const response = await axios.get(getChordsApi(artist, song))
-      const $ = cheerio.load(response.data)
-      $('.tablatura').remove()
-      return $('pre').html()
+    const response = await axios.get(getChordsApi(artist, song),{ headers: {'Access-Control-Allow-Origin': '*'}})
+    const $ = cheerio.load(response.data)
+    $('.tablatura').remove()
+    return $('pre').html()
   } catch (e) {
-      return null;
+    return null;
   }
 }
 
 export const getArtist = async (artistSlug, complete) => {
   try {
-      const response = await axios.get(getArtistApi(artistSlug))
+    const response = await axios.get(getArtistApi(artistSlug))
 
-      const artist = response.data.artist
+    const artist = response.data.artist
 
-      if (!artist) return null
+    if (!artist) return null
 
-      let artistResponse = {
-          name: artist.desc,
-          imgUrl: artist.pic_small,
-          genre: artist.genre ? artist.genre[0].name : undefined,
-      }
+    let artistResponse = {
+      name: artist.desc,
+      imgUrl: artist.pic_small,
+      genre: artist.genre ? artist.genre[0].name : undefined,
+    }
 
-      if (complete) {
-          artistResponse = { ...artistResponse, topLyrics: artist.toplyrics.item }
-      }
-      return artistResponse
+    if (complete) {
+      let artistRegex = `/${artistSlug}/`
+      let musicsWithSlugs = artist.toplyrics.item.map(music => {
+        return { ...music, slug: music.url.replace(artistRegex, '').replace(/\.html/, '') }
+      })
+      artistResponse = { ...artistResponse, topLyrics: musicsWithSlugs }
+    }
+    return artistResponse
   } catch (e) {
-      return null
+    return null
   }
 }
