@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import { getSongs } from "../../service/music";
+import { getArtist } from "../../service/music";
 import {
   LinearProgress,
 } from "@mui/material";
+import ItemMusica from "./ItemMusica";
 
-const ListaMusicas = ({ artista, onSelect, returnCommand }) => {
+const ListaMusicas = ({ artista }) => {
   const [musicas, setMusicas] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    getSongs(artista).then((musics) => {
-      setMusicas(musics);
+    getArtist(artista, true).then(response => {
+      let m = response.topLyrics
+      setMusicas(m);
       setLoading(false);
     });
     // eslint-disable-next-line
@@ -27,14 +24,7 @@ const ListaMusicas = ({ artista, onSelect, returnCommand }) => {
 
   if (musicas) {
     musicList = musicas.map((musica) => (
-      <ListItem key={musica.slug} disablePadding>
-        <ListItemButton onClick={() => onSelect(musica)}>
-          <ListItemAvatar>
-            <Avatar alt={musica.name} src={"avatar.jpg"} />
-          </ListItemAvatar>
-          <ListItemText primary={musica.name} />
-        </ListItemButton>
-      </ListItem>
+      <ItemMusica artista={artista} musica={musica}/>
     ));
   }
 

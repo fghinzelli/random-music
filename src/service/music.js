@@ -52,6 +52,7 @@ export const getSongs = async (name) => {
 
 export const getChords = async (artist, song) => {
   try {
+      console.log(getChordsApi(artist, song))
       const response = await axios.get(getChordsApi(artist, song))
       const $ = cheerio.load(response.data)
       $('.tablatura').remove()

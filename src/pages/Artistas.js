@@ -1,7 +1,6 @@
 import React from 'react';
 import Paper from '../components/Paper/Paper'
 import ListaArtistas from '../components/Artistas/ListaArtistas'
-// import MusicasArtista from '../components/Musicas/MusicasArtista'
 
 const Artistas = () => {
     let breadcrumb = [
@@ -11,7 +10,7 @@ const Artistas = () => {
     
     return (
         <Paper breadcrumb={breadcrumb} title="Artistas">
-            <ListaArtistas />
+            <ListaArtistas /> 
         </Paper>
     )
 }
