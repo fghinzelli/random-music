@@ -76,6 +76,7 @@ export const ESTILOS = {
     "cascaveletes",
     "papas-da-lingua",
     "acusticos-e-valvulados"
+]
 };
 
 export const SEARCH_SONGS_API = "https://studiosolsolr-a.akamaihd.net/cc/h2/";
