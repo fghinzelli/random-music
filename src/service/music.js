@@ -50,16 +50,26 @@ export const getSongs = async (name) => {
   return songs;
 };
 
+// export const getChords = async (artist, song) => {
+//   try {
+//     const response = await axios.get(getChordsApi(artist, song));
+//     const $ = cheerio.load(response.data);
+//     $(".tablatura").remove();
+//     return $("pre").html();
+//   } catch (e) {
+//     return null;
+//   }
+// };
+
 export const getChords = async (artist, song) => {
   try {
-    const response = await axios.get(getChordsApi(artist, song));
-    const $ = cheerio.load(response.data);
-    $(".tablatura").remove();
-    return $("pre").html();
+    const response = await axios.get(`http://localhost:4000/chords/${artist}/${song}`);
+    return response;
   } catch (e) {
     return null;
   }
 };
+
 
 export const getArtist = async (artistSlug, complete) => {
   try {

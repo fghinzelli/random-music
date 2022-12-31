@@ -4,6 +4,12 @@ const cheerio = require('cheerio');
 
 const app = express();
 
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 const SEARCH_SONGS_API = 'https://studiosolsolr-a.akamaihd.net/cc/h2/';
 
 const getChordsApi = (artist, song) =>
