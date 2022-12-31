@@ -64,8 +64,18 @@ export const ESTILOS = {
     "frejat", 
     "kid-abelha",
     "jota-quest",
-    "charlie-brown",
-    "engenheiros-do-hawaii"],
+    "charlie-brown-jr",
+    "engenheiros-do-hawaii",
+    "raimundos",
+    "mamonas-assassinas", 
+    "titas",
+    "nando-reis"
+],
+"Rock Gaucho": [
+    "tekila-baby",
+    "cascaveletes",
+    "papas-da-lingua",
+    "acusticos-e-valvulados"
 };
 
 export const SEARCH_SONGS_API = "https://studiosolsolr-a.akamaihd.net/cc/h2/";
