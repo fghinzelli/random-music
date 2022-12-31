@@ -27,7 +27,7 @@ const Paper = props => {
         )
     }
     return (
-        <Container maxWidth="sm">
+        <Container maxWidth="lg">
             <Typography
                 sx={{
                     width: "100%",
@@ -40,7 +40,7 @@ const Paper = props => {
                 {props.title}
             </Typography>
             { breadcrumb }
-            <Card elevation={5}>
+            <Card elevation={5} style={{ overflow: "auto"}}>
                 <CardContent>
                     {props.children}
                 </CardContent>
