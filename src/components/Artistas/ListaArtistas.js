@@ -15,8 +15,8 @@ const ListaArtistas = ({estilo}) => {
   let artistas = LISTA_ARTISTAS
   let q = query.get("estilo")
   console.log(q)
-  if (estilo && q) {
-    artistas = artistas[estilo].sort()
+  if (q) {
+    artistas = artistas[q].sort()
   } else {
     artistas = artistas.sort()
   }
