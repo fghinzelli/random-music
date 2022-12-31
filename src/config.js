@@ -62,6 +62,9 @@ export const ESTILOS = {
     "cidadao-quem", 
     "skank", 
     "frejat", 
+    "kid-abelha",
+    "jota-quest",
+    "charlie-brown",
     "engenheiros-do-hawaii"],
 };
 
