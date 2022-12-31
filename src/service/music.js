@@ -63,7 +63,7 @@ export const getSongs = async (name) => {
 
 export const getChords = async (artist, song) => {
   try {
-    const response = await axios.get(`http://localhost:4000/chords/${artist}/${song}`);
+    const response = await axios.get(`https://random-music-hrh7.vercel.app/chords/${artist}/${song}`);
     return response;
   } catch (e) {
     return null;

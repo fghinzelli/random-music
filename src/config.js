@@ -4,7 +4,7 @@ export const LISTA_ARTISTAS = [
     'cidadao-quem',
     'rosa-de-saron',
     'joao-bosco-e-vinicius',
-    'jorge-e-mateus',
+    'jorge-mateus',
     'leonardo'
 ]
 

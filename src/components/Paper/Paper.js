@@ -31,7 +31,7 @@ const Paper = props => {
             <Typography
                 sx={{
                     width: "100%",
-                    marginTop: 20,
+                    marginTop: 5,
                     marginLeft: 3,
                 }}
                 variant="h3"
